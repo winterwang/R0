@@ -1,5 +1,5 @@
 ---
-title: "基本再生産数 <br> .med[Basic reproduction number R$_0$]"
+title: "基本再生産数 <br> .med[Basic reproduction number $R_0$]"
 author: 
     Chaochen Wang | 王　超辰 <br>
     公衆衛生学講座
@@ -138,14 +138,14 @@ $$
 class: middle 
 
 ## SIR モデル (3)
-感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0, I(t) = I_0$ として置き換える
+感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
 .full-width[.content-box-red[.bold[
 $$
 \begin{aligned}
 \frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
-\frac{d I}{dt}(0) & = \beta S_0 I_0 - \gamma I_0 \\ 
-\frac{d I}{dt}(0) & = (\beta S_0 - \gamma)I_0 \\
-\Rightarrow \frac{d I}{dt}(0) & = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma I_0
+\frac{d I(t)}{dt} & = \beta S_0 I(t) - \gamma I(t) \\ 
+\frac{d I(t)}{dt} & = (\beta S_0 - \gamma)I(t) \\
+\Rightarrow I(t) & = I_0 e^{(\beta S_0 - \gamma)t}
 \end{aligned}
 $$
 ]]]
@@ -153,18 +153,85 @@ $$
 ---
 class: middle
 
-## 基本再生産数 $R_0$
+## 基本再生産数 $\mathfrak{R}_0$
+
+$$
+I(t) = I_0 e^{(\beta S_0 - \gamma)t} =  I_0 e^{(\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma t}
+$$
 
 .full-width[.content-box-red[.bold[
 $$
-R_0 = \color{red}{\frac{\beta S_0}{\gamma}}
+\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}
 $$
-$R_0$ は**基本再生産数**と呼ぶ。 $R_0$ は1人の感染者が何人の未感染者に感染させる期待値
+$\mathfrak{R}_0$ は**基本再生産数**と呼ぶ。 $R_0$ は1人の感染者が何人の未感染者に感染させる期待値
 ]]]
 
+
+$$\mathfrak{R}_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
+< 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$
+
+
+???
+
+- $\beta$ 感染確率を下げるには、手洗い、食事、マスク、3密を避けることが必要
+- $\gamma$ 回復率を上げると、$R_0$ も小さくなる。
+
+
+---
+class: middle
+
+## 例：1000 人の集団に新興感染症を持った1人が侵入
+
+- 感染確率： $\beta = 0.00015 \times 12 = 0.0018$ 
+    - 一度の接触で感染する確率が0.00015と仮定する
+    - 1人が1日平均他人と12回接触があると仮定する
+- 回復率: 1日で1人が回復すると仮定する $\gamma = 1$
+- 1日あたりの未感染者数の変化 <br> $\frac{d S(t)}{dt}  = -\beta S(t) I(t) = 0.0018 \times 1000 \times 1 = -1.8$
+- 1日あたりの感染者数の変化 <br> $\frac{d I(t)}{dt} = \beta S(t) I(t) - \gamma I(t) = 1.8 - 1 \times 1 = 0.8$
+- 1日あたりの既感染者数の変化 <br> $\frac{d R(t)}{dt} = \gamma I(t) = 1$
+
+---
+class: middle 
+
+## 例
+
 $$
-\frac{d I}{dt}(0) = (R_0 - 1)\gamma I_0
+\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8
 $$
 
-$$R_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
-< 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$
+.tiny[
+```{r tab1, echo = FALSE, message=FALSE, eval=TRUE, cache=TRUE}
+dt <- read.csv("tab/1000.csv", header = T)
+names(dt)[5] <- "dS/dt"
+names(dt)[6] <- "dI/dt"
+names(dt)[7] <- "dR/dt"
+DT::datatable(
+  head(dt,26),  escape=FALSE, 
+  fillContainer = FALSE, options = list(pageLength = 6))
+```
+]
+
+
+---
+class: top, center, inverse
+background-image: url("./fig/1000sim.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: middle
+
+# 集団免疫
+
+例のシミュレーションによれば、結局全員が罹患することなく、約200人が感染症にかからずに流行が終息した。最後に残った200人は、800人の免疫獲得者によって、感染患者からブロックされた形となる。（未感染者の減少と既感染者が増加するため、感染者と未感染者の接触する機会が減る）**病原性が弱まるからではない。**これを集団免疫 (herd immunity)と呼ばれる。
+
+---
+class: middle
+# 基本再生産数を減らすには
+
+- ワクチンを導入すれば、未感染者 $(S)$ が減る
+
+- 積極的に検査と感染者を治療することによって、回復率 $(\gamma)$ を上げる
+
+- 手洗い、運動、マスク着用、3密を避けることによって、感染確率 $(\beta)$ が減る 
+
