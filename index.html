@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>基本再生産数   .med[Basic reproduction number R_0]</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Chaochen Wang | 王　超辰   公衆衛生学講座" />
+    <script src="libs/header-attrs-2.3/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 基本再生産数 <br> .med[Basic reproduction number R<span class="math inline"><em></em><sub>0</sub></span>]
+### Chaochen Wang | 王　超辰 <br> 公衆衛生学講座
+### 2020-07-29（水）1限
+
+---
+
+
+
+class: middle
+# 感染症の感染モデル
+
+.full-width[.content-box-red[.bold[
+- 20人の集団の中で1人が感染者となった。
+
+- 1人が2人に感染させる力があるとする。
+
+- 人の出入りのない、すなわち &lt;br&gt; 出生、死亡がなく、
+&lt;br&gt;引っ越しもない集団とする。
+]]]
+
+最終的には、感染者は何人になるか？
+
+
+
+
+---
+class: top, center
+background-image: url("./fig/herd1.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd2.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd3.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd4.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd5.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd6.png")
+background-position: 50% 50%
+background-size: contain
+
+???
+
+次々と感染者は増えていくが、未感染者の数が減るに従って、既感染者が増えることによって、感染者の数は減少に向かう。最終的に未感染者を残して感染流行は終息する。
+
+---
+class: middle
+## 間接予防効果 (herd immunity)
+
+.full-width[.content-box-red[.bold[
+- 次々と感染者は増えていくが
+
+- 未感染者の数が減るに従って
+
+- 既感染者が増えることによって
+
+- 感染者の数は減少に向かう
+
+- 最終的に未感染者を残したまま &lt;br&gt;感染流行は終息する
+]]]
+
+---
+class: middle 
+
+## SIR モデル (1)
+
+
+.full-width[.content-box-red[.bold[
+人口は3つの集団に分類される：
+- S: Susceptible 未感染者数 &lt;br&gt; 感染する可能性がある集団
+
+- I: Infectious 感染者数 &lt;br&gt; 症状あり、伝染しうる期間である集団
+
+- R: Recover 回復者数 &lt;br&gt; 感染後回復し免疫状態がある集団
+
+]]]
+
+---
+class: middle 
+
+## SIR モデル (2)
+
+$$
+`\begin{aligned}
+\frac{d S(t)}{dt} &amp; = -\beta S(t) I(t) \\
+\frac{d I(t)}{dt} &amp; = \beta S(t) I(t) - \gamma I(t) \\
+\frac{d R(t)}{dt} &amp; = \gamma I(t)
+\end{aligned}`
+$$
+
+.full-width[.content-box-red[.bold[
+- `\(\beta\)`: 感染確率 &lt;br&gt;（1人の感染者が1人に1日でうつす確率）
+- `\(\gamma\)`: 回復率 &lt;br&gt;（1日で5人に1人回復するなら `\(\gamma = 0.2\)`）
+]]]
+
+
+???
+
+- 各集団の人数の時間的な変化は微分方程式で表すことが可能
+- 真ん中の式を注目して、式の変形を考えて行きます
+
+---
+class: middle 
+
+## SIR モデル (3)
+感染が始まったばかりの時は（初期状態）&lt;br&gt; `\(S(t) = S_0\)` として置き換える
+.full-width[.content-box-red[.bold[
+$$
+`\begin{aligned}
+\frac{d I(t)}{dt} &amp; = \beta S(t) I(t) - \gamma I(t) \\
+\frac{d I(t)}{dt} &amp; = \beta S_0 I(t) - \gamma I(t) \\ 
+\frac{d I(t)}{dt} &amp; = (\beta S_0 - \gamma)I(t) \\
+\Rightarrow \frac{d I(t)}{dt} &amp; = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)I(t)
+\end{aligned}`
+$$
+]]]
+
+---
+class: middle
+
+## 基本再生産数 `\(R_0\)`
+
+.full-width[.content-box-red[.bold[
+$$
+R_0 = \color{red}{\frac{\beta S_0}{\gamma}}
+$$
+`\(R_0\)` は**基本再生産数**と呼ぶ。 `\(R_0\)` は1人の感染者が何人の未感染者に感染させる期待値
+]]]
+
+$$
+\frac{d I(t)}{dt} = (R_0 - 1)I(t)
+$$
+
+`$$R_0 \left \{ \begin{array}{ll} &gt; 1 \text{ 感染が拡大する } \\ 
+&lt; 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+(function(time) {
+  var d2 = function(number) {
+    return ('0' + number).slice(-2); // left-pad 0 to minutes/seconds
+  },
+
+  time_format = function(total) {
+    var secs = Math.abs(total) / 1000;
+    var h = Math.floor(secs / 3600);
+    var m = Math.floor(secs % 3600 / 60);
+    var s = Math.round(secs % 60);
+    var res = d2(m) + ':' + d2(s);
+    if (h > 0) res = h + ':' + res;
+    return res;  // [hh:]mm:ss
+  },
+
+  slide_number_div = function(i) {
+    return document.getElementsByClassName('remark-slide-number').item(i);
+  },
+
+  current_page_number = function(i) {
+    return slide_number_div(i).firstChild.textContent;  // text "i / N"
+  };
+
+  var timer = document.createElement('span'); timer.id = 'slide-time-left';
+  var time_left = time, k = slideshow.getCurrentSlideIndex(),
+      last_page_number = current_page_number(k);
+
+  setInterval(function() {
+    time_left = time_left - 1000;
+    timer.innerHTML = ' ' + time_format(time_left);
+    if (time_left < 0) timer.style.color = 'red';
+  }, 1000);
+
+  slide_number_div(k).appendChild(timer);
+
+  slideshow.on('showSlide', function(slide) {
+    var i = slide.getSlideIndex(), n = current_page_number(i);
+    // reset timer when a new slide is shown and the page number is changed
+    if (last_page_number !== n) {
+      time_left = time; last_page_number = n;
+      timer.innerHTML = ' ' + time_format(time); timer.style.color = null;
+    }
+    slide_number_div(i).appendChild(timer);
+  });
+})(60000);
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

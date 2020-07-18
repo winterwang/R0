@@ -1,0 +1,170 @@
+---
+title: "基本再生産数 <br> .med[Basic reproduction number R$_0$]"
+author: 
+    Chaochen Wang | 王　超辰 <br>
+    公衆衛生学講座
+date: "2020-07-29（水）1限"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      countdown: 60000
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+      # ratio: 16:9
+editor_options: 
+  chunk_output_type: console
+---
+
+
+class: middle
+# 感染症の感染モデル
+
+.full-width[.content-box-red[.bold[
+- 20人の集団の中で1人が感染者となった。
+
+- 1人が2人に感染させる力があるとする。
+
+- 人の出入りのない、すなわち <br> 出生、死亡がなく、
+<br>引っ越しもない集団とする。
+]]]
+
+最終的には、感染者は何人になるか？
+
+
+
+
+---
+class: top, center
+background-image: url("./fig/herd1.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd2.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd3.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd4.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd5.png")
+background-position: 50% 50%
+background-size: contain
+
+---
+class: top, center
+background-image: url("./fig/herd6.png")
+background-position: 50% 50%
+background-size: contain
+
+???
+
+次々と感染者は増えていくが、未感染者の数が減るに従って、既感染者が増えることによって、感染者の数は減少に向かう。最終的に未感染者を残して感染流行は終息する。
+
+---
+class: middle
+## 間接予防効果 (herd immunity)
+
+.full-width[.content-box-red[.bold[
+- 次々と感染者は増えていくが
+
+- 未感染者の数が減るに従って
+
+- 既感染者が増えることによって
+
+- 感染者の数は減少に向かう
+
+- 最終的に未感染者を残したまま <br>感染流行は終息する
+]]]
+
+---
+class: middle 
+
+## SIR モデル (1)
+
+
+.full-width[.content-box-red[.bold[
+人口は3つの集団に分類される：
+- S: Susceptible 未感染者数 <br> 感染する可能性がある集団
+
+- I: Infectious 感染者数 <br> 症状あり、伝染しうる期間である集団
+
+- R: Recover 回復者数 <br> 感染後回復し免疫状態がある集団
+
+]]]
+
+---
+class: middle 
+
+## SIR モデル (2)
+
+$$
+\begin{aligned}
+\frac{d S(t)}{dt} & = -\beta S(t) I(t) \\
+\frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
+\frac{d R(t)}{dt} & = \gamma I(t)
+\end{aligned}
+$$
+
+.full-width[.content-box-red[.bold[
+- $\beta$: 感染確率 <br>（1人の感染者が1人に1日でうつす確率）
+- $\gamma$: 回復率 <br>（1日で5人に1人回復するなら $\gamma = 0.2$）
+]]]
+
+
+???
+
+- 各集団の人数の時間的な変化は微分方程式で表すことが可能
+- 真ん中の式を注目して、式の変形を考えて行きます
+
+---
+class: middle 
+
+## SIR モデル (3)
+感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
+.full-width[.content-box-red[.bold[
+$$
+\begin{aligned}
+\frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
+\frac{d I(t)}{dt} & = \beta S_0 I(t) - \gamma I(t) \\ 
+\frac{d I(t)}{dt} & = (\beta S_0 - \gamma)I(t) \\
+\Rightarrow \frac{d I(t)}{dt} & = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)I(t)
+\end{aligned}
+$$
+]]]
+
+---
+class: middle
+
+## 基本再生産数 $R_0$
+
+.full-width[.content-box-red[.bold[
+$$
+R_0 = \color{red}{\frac{\beta S_0}{\gamma}}
+$$
+$R_0$ は**基本再生産数**と呼ぶ。 $R_0$ は1人の感染者が何人の未感染者に感染させる期待値
+]]]
+
+$$
+\frac{d I(t)}{dt} = (R_0 - 1)I(t)
+$$
+
+$$R_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
+< 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$
