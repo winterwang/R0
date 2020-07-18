@@ -136,14 +136,14 @@ $$
 class: middle 
 
 ## SIR モデル (3)
-感染が始まったばかりの時は（初期状態）&lt;br&gt; `\(S(t) = S_0\)` として置き換える
+感染が始まったばかりの時は（初期状態）&lt;br&gt; `\(S(t) = S_0, I(t) = I_0\)` として置き換える
 .full-width[.content-box-red[.bold[
 $$
 `\begin{aligned}
 \frac{d I(t)}{dt} &amp; = \beta S(t) I(t) - \gamma I(t) \\
-\frac{d I(t)}{dt} &amp; = \beta S_0 I(t) - \gamma I(t) \\ 
-\frac{d I(t)}{dt} &amp; = (\beta S_0 - \gamma)I(t) \\
-\Rightarrow \frac{d I(t)}{dt} &amp; = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)I(t)
+\frac{d I}{dt}(0) &amp; = \beta S_0 I_0 - \gamma I_0 \\ 
+\frac{d I}{dt}(0) &amp; = (\beta S_0 - \gamma)I_0 \\
+\Rightarrow \frac{d I}{dt}(0) &amp; = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma I_0
 \end{aligned}`
 $$
 ]]]
@@ -161,7 +161,7 @@ $$
 ]]]
 
 $$
-\frac{d I(t)}{dt} = (R_0 - 1)I(t)
+\frac{d I}{dt}(0) = (R_0 - 1)\gamma I_0
 $$
 
 `$$R_0 \left \{ \begin{array}{ll} &gt; 1 \text{ 感染が拡大する } \\ 

@@ -138,14 +138,14 @@ $$
 class: middle 
 
 ## SIR モデル (3)
-感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
+感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0, I(t) = I_0$ として置き換える
 .full-width[.content-box-red[.bold[
 $$
 \begin{aligned}
 \frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
-\frac{d I(t)}{dt} & = \beta S_0 I(t) - \gamma I(t) \\ 
-\frac{d I(t)}{dt} & = (\beta S_0 - \gamma)I(t) \\
-\Rightarrow \frac{d I(t)}{dt} & = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)I(t)
+\frac{d I}{dt}(0) & = \beta S_0 I_0 - \gamma I_0 \\ 
+\frac{d I}{dt}(0) & = (\beta S_0 - \gamma)I_0 \\
+\Rightarrow \frac{d I}{dt}(0) & = (\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma I_0
 \end{aligned}
 $$
 ]]]
@@ -163,7 +163,7 @@ $R_0$ は**基本再生産数**と呼ぶ。 $R_0$ は1人の感染者が何人�
 ]]]
 
 $$
-\frac{d I(t)}{dt} = (R_0 - 1)I(t)
+\frac{d I}{dt}(0) = (R_0 - 1)\gamma I_0
 $$
 
 $$R_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
