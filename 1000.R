@@ -11,3 +11,7 @@ text(20, 860, "既感染者数 R = 794", cex = 1.4, col = "blue")
 text(20, 260, "未感染者数 S = 206", cex = 1.4, col = "red")
 text(21, 70, "感染者数 I_max = 144", cex = 1.4, col = "darkgreen")
 title("未感染1000人における流行の経時変化", cex.main = 1.8)
+
+# turn slides into pdf
+
+xaringan::decktape("https://wangcc.me/R0/", output = "R0.pdf", docker = FALSE)
