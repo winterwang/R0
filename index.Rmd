@@ -1,75 +1,78 @@
 ---
-title: "基本再生産数 <br> .med[Basic reproduction number $R_0$]"
-author: 
-    Chaochen Wang | 王　超辰 <br>
-    公衆衛生学講座
-date: "2020-07-29（水）1限"
+title: "基本再生産数"
+subtitle: "Basic reproduction number $R_0$"
+author: "王　超辰"
+institute: "公衆衛生学講座"
+date: "2021-07-27（木）基礎医学セミナー"
 output:
   xaringan::moon_reader:
-    chakra: libs/remark-latest.min.js
-    css: xaringan-themer.css
-    lib_dir: libs
-    nature:
+    css:
+      - default
+      - mtheme.css
+      - fonts_mtheme.css
+    nature: 
       countdown: 60000
+      beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
-      highlightSpans: true
       countIncrementalSlides: false
-      # ratio: 16:9
-editor_options: 
-  chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+options(htmltools.dir.version = TRUE)
+options(htmltools.preserve.raw = FALSE)
+```
 
-class: middle
 # 感染症の感染モデル
 
-.full-width[.content-box-red[.bold[
+.full-width[.content-box-red[.bold[.font160[
 - 20人の集団の中で1人が感染者となった。
 
 - 1人が2人に感染させる力があるとする。
 
 - 人の出入りのない、すなわち <br> 出生、死亡がなく、
 <br>引っ越しもない集団とする。
-]]]
+]]]]
 
-最終的には、感染者は何人になるか？
-
+--
+.font160[.bold[
+- 最終的には、感染者は何人になるか？
+]]
 
 
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd1.png")
 background-position: 50% 50%
 background-size: contain
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd2.png")
 background-position: 50% 50%
 background-size: contain
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd3.png")
 background-position: 50% 50%
 background-size: contain
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd4.png")
 background-position: 50% 50%
 background-size: contain
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd5.png")
 background-position: 50% 50%
 background-size: contain
 
 ---
-class: top, center
+class: top, center, clear
 background-image: url("./fig/herd6.png")
 background-position: 50% 50%
 background-size: contain
@@ -79,10 +82,10 @@ background-size: contain
 次々と感染者は増えていくが、未感染者の数が減るに従って、既感染者が増えることによって、感染者の数は減少に向かう。最終的に未感染者を残して感染流行は終息する。
 
 ---
-class: middle
-## 間接予防効果 (herd immunity)
+class: 
+# 間接予防効果 (herd immunity)
 
-.full-width[.content-box-red[.bold[
+.full-width[.content-box-red[.bold[.font160[
 - 次々と感染者は増えていくが
 
 - 未感染者の数が減るに従って
@@ -91,42 +94,47 @@ class: middle
 
 - 感染者の数は減少に向かう
 
-- 最終的に未感染者を残したまま <br>感染流行は終息する
-]]]
+- 最終的に未感染者を残したまま、感染流行は終息する
+]]]]
 
 ---
-class: middle 
+class: 
 
-## SIR モデル (1)
+# SIR モデル (1)
 
 
-.full-width[.content-box-red[.bold[
-人口は3つの集団に分類される：
-- S: Susceptible 未感染者数 <br> 感染する可能性がある集団
+.full-width[.content-box-red[.bold[.font160[
+- 人口は3つの集団に分類される：
+  - $S$: Susceptible 未感染者数 <br> 感染する可能性がある集団
 
-- I: Infectious 感染者数 <br> 症状あり、伝染しうる期間である集団
+  - $I$: Infectious 感染者数 <br> 症状あり、伝染しうる期間である集団
 
-- R: Recover 回復者数 <br> 感染後回復し免疫状態がある集団
+  - $R$: Recover 回復者数 <br> 感染後回復し免疫状態がある集団
 
-]]]
+]]]]
 
 ---
-class: middle 
+class: 
 
-## SIR モデル (2)
+# SIR モデル (2)
 
-$$
-\begin{aligned}
-\frac{d S(t)}{dt} & = -\beta S(t) I(t) \\
-\frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
-\frac{d R(t)}{dt} & = \gamma I(t)
-\end{aligned}
-$$
 
-.full-width[.content-box-red[.bold[
+.full-width[.content-box-red[.bold[.font150[
 - $\beta$: 感染確率 <br>（1人の感染者が1人に1日でうつす確率）
 - $\gamma$: 回復率 <br>（1日で5人に1人回復するなら $\gamma = 0.2$）
-]]]
+]]]]
+
+--
+.font150[
+$$
+\begin{aligned}
+\frac{d S(t)}{dt} & = -\beta S(t) I(t) & \text{未感染者数の変化}\\ 
+\color{red}{\frac{d I(t)}{dt}} & \color{red}{= \beta S(t) I(t) - \gamma I(t)} & \color{red}{\text{感染者数の変化}}\\
+\frac{d R(t)}{dt} & = \gamma I(t)　& \text{回復者数の変化}
+\end{aligned}
+$$
+]
+
 
 
 ???
@@ -135,41 +143,49 @@ $$
 - 真ん中の式を注目して、式の変形を考えて行きます
 
 ---
-class: middle 
+class: 
 
-## SIR モデル (3)
-感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
-.full-width[.content-box-red[.bold[
+# SIR モデル (3)
+
+.font150[.bold[
+- 感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
+]]
+
+.full-width[.content-box-red[.bold[.font150[
 $$
 \begin{aligned}
-\frac{d I(t)}{dt} & = \beta S(t) I(t) - \gamma I(t) \\
-\frac{d I(t)}{dt} & = \beta S_0 I(t) - \gamma I(t) \\ 
-\frac{d I(t)}{dt} & = (\beta S_0 - \gamma)I(t) \\
+\frac{d I(t)}{dt} & = \beta \color{red}{S(t)} I(t) - \gamma I(t) \\
+\frac{d I(t)}{dt} & = \beta \color{red}{S_0} I(t) - \gamma I(t) \\ 
+\frac{d I(t)}{dt} & = (\beta S_0 - \gamma)\color{darkgreen}{I(t)} \\
 \Rightarrow I(t) & = I_0 e^{(\beta S_0 - \gamma)t}
 \end{aligned}
 $$
-]]]
+]]]]
 
 ---
-class: middle
+class: 
 
-## 基本再生産数 $\mathfrak{R}_0$
+# 基本再生産数 $\mathfrak{R}_0$
 
+.font160[
 $$
 I(t) = I_0 e^{(\beta S_0 - \gamma)t} =  I_0 e^{(\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma t}
 $$
+]
 
-.full-width[.content-box-red[.bold[
+
+.full-width[.content-box-red[.bold[.font150[
 $$
-\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}
+\color{red}{\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}}
 $$
 $\mathfrak{R}_0$ は**基本再生産数**と呼ぶ。 $\mathfrak{R}_0$ は1人の感染者が何人の未感染者に感染させる期待値
-]]]
+]]]]
 
 
+.font150[
 $$\mathfrak{R}_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
 < 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$
-
+]
 
 ???
 
@@ -178,36 +194,58 @@ $$\mathfrak{R}_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \
 
 
 ---
-class: middle
+class: 
 
-## 例：1000 人の集団に新興感染症を持った1人が侵入
+# 例: 1000人の集団に新興感染症1人が侵入
 
+.bold[.font140[
 - 感染確率： $\beta = 0.00015 \times 12 = 0.0018$ 
-    - 一度の接触で感染する確率が0.00015と仮定する
-    - 1人が1日平均他人と12回接触があると仮定する
+    - 一度の接触で感染する確率が $0.00015$ と仮定する
+    - 1人が1日平均他人と $12$ 回接触があると仮定する
+]]
+
+--
+.bold[.font140[
 - 回復率: 1日で1人が回復すると仮定する $\gamma = 1$
+]]
+
+--
+.bold[.font140[
 - 1日あたりの未感染者数の変化 <br> $\frac{d S(t)}{dt}  = -\beta S(t) I(t) = 0.0018 \times 1000 \times 1 = -1.8$
+]]
+
+--
+.bold[.font140[
 - 1日あたりの感染者数の変化 <br> $\frac{d I(t)}{dt} = \beta S(t) I(t) - \gamma I(t) = 1.8 - 1 \times 1 = 0.8$
+]]
+
+--
+.bold[.font140[
 - 1日あたりの既感染者数の変化 <br> $\frac{d R(t)}{dt} = \gamma I(t) = 1$
+]]
 
 ---
-class: middle 
+class: 
 
-## 例
+# 例: シミュレーション計算
 
+.font150[
 $$
 \mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8
 $$
+]
 
-.tiny[
+.bold[
 ```{r tab1, echo = FALSE, message=FALSE, eval=TRUE, cache=TRUE}
 dt <- read.csv("tab/1000.csv", header = T)
 names(dt)[5] <- "dS/dt"
 names(dt)[6] <- "dI/dt"
 names(dt)[7] <- "dR/dt"
-DT::datatable(
+library(DT)
+datatable(
   head(dt,26),  escape=FALSE, 
-  fillContainer = FALSE, options = list(pageLength = 6))
+  fillContainer = FALSE, options = list(pageLength = 6)) %>% 
+  formatRound(columns=2:8, digits=3)
 ```
 ]
 
@@ -251,4 +289,4 @@ background-size: contain
 
 ???
 
-[link to the figure](https://twitter.com/kenmomd/status/1287440381961883651?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed&ref_url=notion%3A%2F%2Fwww.notion.so%2F64c017115c4c407da5696ea49cf85c3d%3Fv%3D0cc968153eea4a9b90f98cfce587333a%26p%3Dbfabd7e388984537aadbe5256d46a506)
+<!-- [link to the figure](https://twitter.com/kenmomd/status/1287440381961883651?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed&ref_url=notion%3A%2F%2Fwww.notion.so%2F64c017115c4c407da5696ea49cf85c3d%3Fv%3D0cc968153eea4a9b90f98cfce587333a%26p%3Dbfabd7e388984537aadbe5256d46a506) -->

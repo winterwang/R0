@@ -1,0 +1,47 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,700,700i);
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+
+
+body {
+  font-family: Noto Sans JP, Josefin Sans, 'Fira Sans','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+  font-weight: 500;
+  color: #13393A;
+  
+}
+
+.remark-code, .remark-inline-code {
+  font-family: 'Fira Code', 'Lucida Console', Monaco, monospace;
+  font-size: 80%;
+}
+
+strong{
+  /*color:#B03A2E;*/
+  color:#ff0000;
+  font-weight: bold;
+}
+
+
+.big{ font-size: 110% }
+.large { font-size: 120% }
+.larger { font-size: 130% }
+.med { font-size: 85% }
+.small { font-size: 70% }
+.smaller { font-size: 65% }
+.between { font-size: 60% }
+.tiny { font-size: 50% }
+.verytiny { font-size: 40% }
+
+.black { color: black; }
+.red { color: red; }
+.blue { color: blue; }
+.green { color: green; }
+.yellow { color: yellow; }
+.orange { color: orange; }
+.purple { color: purple; }
+.gray { color: gray; }
+.grey { color: gray; }
+
+.bold { font-weight: bold; }
+.bolder { font-weight: bolder; }
