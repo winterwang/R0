@@ -50,7 +50,7 @@ background-size: contain
 
 ---
 class: top, center, clear
-background-image: url("./fig/herd2.png")
+background-image: aurl("./fig/herd2.png")
 background-position: 50% 50%
 background-size: contain
 
@@ -352,6 +352,48 @@ $$
 
 - 手洗い、運動、マスク着用、3密を避けることによって、感染確率 $(\beta)$ が減る 
 ]]]]
+
+
+---
+class: 
+background-image: url("./fig/07.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+background-image: url("./fig/08.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+
+---
+class: 
+background-image: url("./fig/09.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+background-image: url("./fig/10.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+background-image: url("./fig/11.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
 
 
 
