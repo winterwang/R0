@@ -110,7 +110,7 @@ class:
 ---
 class: 
 
-# SIR モデル (1)
+# SIR モデル (1): 集団分類 S, I, R
 
 
 .full-width[.content-box-red[.bold[.font160[
@@ -123,10 +123,13 @@ class:
 
 ]]]]
 
+???
+- この三つの集団の人数は常に、時間と共に変化していく。
+
 ---
 class: 
 
-# SIR モデル (2)
+# SIR モデル (2): パラメーターと SIR モデル
 
 
 .full-width[.content-box-red[.bold[.font150[
@@ -155,7 +158,7 @@ $$
 ---
 class: 
 
-# SIR モデル (3)
+# SIR モデル (3): 感染者数変化式の変形
 
 .font150[.bold[
 - 感染が始まったばかりの時は（初期状態）&lt;br&gt; `\(S(t) = S_0\)` として置き換える
@@ -172,26 +175,31 @@ $$
 $$
 ]]]]
 
+???
+
+- 最後の矢印の式は、時間微分式が微分される前の式に戻る状態の数式
+
 ---
 class: 
 
 # 基本再生産数 `\(\mathfrak{R}_0\)`
 
-.font160[
+.font160[.bold[
 $$
 I(t) = I_0 e^{(\beta S_0 - \gamma)t} =  I_0 e^{(\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma t}
 $$
-]
+]]
 
-
+--
 .full-width[.content-box-red[.bold[.font150[
 $$
 \color{red}{\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}}
 $$
-`\(\mathfrak{R}_0\)` は**基本再生産数**と呼ぶ。 `\(\mathfrak{R}_0\)` は1人の感染者が何人の未感染者に感染させる期待値
+- `\(\mathfrak{R}_0\)` は**基本再生産数**と呼ぶ。 
+- `\(\mathfrak{R}_0\)` は1人の感染者が何人の未感染者に感染させる期待値
 ]]]]
 
-
+--
 .font150[
 `$$\mathfrak{R}_0 \left \{ \begin{array}{ll} &gt; 1 \text{ 感染が拡大する } \\ 
 &lt; 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$`
@@ -208,72 +216,134 @@ class:
 
 # 例: 1000人の集団に新興感染症1人が侵入
 
-.bold[.font140[
+.bold[.font100[
 - 感染確率： `\(\beta = 0.00015 \times 12 = 0.0018\)` 
     - 一度の接触で感染する確率が `\(0.00015\)` と仮定する
     - 1人が1日平均他人と `\(12\)` 回接触があると仮定する
-]]
-
---
-.bold[.font140[
 - 回復率: 1日で1人が回復すると仮定する `\(\gamma = 1\)`
 ]]
 
+
 --
-.bold[.font140[
-- 1日あたりの未感染者数の変化 &lt;br&gt; `\(\frac{d S(t)}{dt}  = -\beta S(t) I(t) = 0.0018 \times 1000 \times 1 = -1.8\)`
+.bold[.font100[
+- 1日目の未感染者数の変化 &lt;br&gt; `\(\frac{d S(t=1)}{dt}  = -\beta S_0 I(t = 1) = 0.0018 \times 1000 \times 1 = -1.8\)`
 ]]
 
 --
-.bold[.font140[
-- 1日あたりの感染者数の変化 &lt;br&gt; `\(\frac{d I(t)}{dt} = \beta S(t) I(t) - \gamma I(t) = 1.8 - 1 \times 1 = 0.8\)`
+.bold[.font100[
+- 1日目の感染者数の変化 &lt;br&gt; `\(\frac{d I(t=1)}{dt} = \beta S_0 I(t = 1) - \gamma I(t = 1) = 1.8 - 1 \times 1 = 0.8\)`
 ]]
 
 --
-.bold[.font140[
-- 1日あたりの既感染者数の変化 &lt;br&gt; `\(\frac{d R(t)}{dt} = \gamma I(t) = 1\)`
+.bold[.font100[
+- 1日目の既感染者数の変化 &lt;br&gt; `\(\frac{d R(t = 1)}{dt} = \gamma I(t = 1) = 1\)`
 ]]
+
+--
+.font100[
+$$
+`\begin{aligned}
+\mathfrak{R}_0 = {\frac{\beta S(t = 1)}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8 &amp; \;
+\text{(Day 1)}
+\end{aligned}`
+$$
+]
+
 
 ---
 class: 
 
-# 例: シミュレーション計算
+# 例: シミュレーション計算 (1)
 
-.font150[
+
+.bold[.font100[
+- 2日目の未感染者数の変化
+
 $$
-\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8
+`\begin{aligned}
+  \frac{d S(t=2)}{dt} &amp; = -\beta (S_0 - \frac{d S(t=1)}{dt}) I(t = 2) \\
+                      &amp; = - 0.0018 \times (1000 - 1.8) \times 1.8 = -3.234 
+\end{aligned}`
+$$
+]]
+
+--
+.bold[.font100[
+- 2日目の感染者数の変化 
+
+$$
+`\begin{aligned}
+\frac{d I(t=2)}{dt} &amp;= \beta S(t = 1) I(t = 2) - \gamma I(t = 2) \\ &amp;= 0.0018\times (1000-1.8) \times 1- 1 \times 1.8 = 1.434
+\end{aligned}`
+$$
+]]
+
+--
+.bold[.font100[
+- 2日目の既感染者数の変化
+
+$$
+`\begin{aligned}
+\frac{d R(t=2)}{dt} &amp; = \gamma I(t = 2) \\ &amp; = 1 \times 1.8 = 1.8
+\end{aligned}`
+$$
+]]
+
+
+--
+.font100[
+$$
+`\begin{aligned}
+\mathfrak{R}_0 = {\frac{\beta S(t = 2)}{\gamma}} = \frac{0.0018 \times (1000 - 1.8)}{1} = 1.796 &amp; \;
+\text{(Day 2)}
+\end{aligned}`
 $$
 ]
 
+
+
+---
+class: 
+# 例: シミュレーション計算 (2)
+
+
 .bold[
-<div id="htmlwidget-268ad93b9925e52bb7d2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-268ad93b9925e52bb7d2">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],[1000,998.2,994.965832,989.173636,978.8605584,960.6894416,929.2672015,876.7078186,793.7652192,675.2587081,531.2181116,393.4875591,295.936093,243.9718935,221.151846,212.0677939,208.6002111,207.2982017,206.8123742,206.6315189,206.5642522,206.5392414,206.5299431,206.5264864,206.5252014,206.5247237],[1,1.8,3.234168,5.792195979,10.3130776,18.17111682,31.42224013,52.55938287,82.94259943,118.5065111,144.0405965,137.7305526,97.55146608,51.96419953,22.82004747,9.084052122,3.467582807,1.30200931,0.485827539,0.180855264,0.067266716,0.025010818,0.009298288,0.003456675,0.001285011,0.000477697],[0,1,2.8,6.034168,11.82636398,22.13944158,40.3105584,71.73279853,124.2921814,207.2347808,325.7412919,469.7818884,607.5124409,705.063907,757.0281065,779.848154,788.9322061,792.3997889,793.7017983,794.1876258,794.3684811,794.4357478,794.4607586,794.4700569,794.4735136,794.4747986],[-1.8,-3.234168,-5.792195979,-10.3130776,-18.17111682,-31.42224013,-52.55938287,-82.94259943,-118.5065111,-144.0405965,-137.7305526,-97.55146608,-51.96419953,-22.82004747,-9.084052122,-3.467582807,-1.30200931,-0.485827539,-0.180855264,-0.067266716,-0.025010818,-0.009298288,-0.003456675,-0.001285011,-0.000477697,-0.000177581],[0.8,1.434168,2.558027979,4.520881624,7.858039219,13.25112331,21.13714274,30.38321656,35.56391168,25.53408535,-6.310043894,-40.17908648,-45.58726656,-29.14415206,-13.73599535,-5.616469315,-2.165573497,-0.81618177,-0.304972275,-0.113588548,-0.042255898,-0.01571253,-0.005841613,-0.002171664,-0.000807314,-0.000300116],[1,1.8,3.234168,5.792195979,10.3130776,18.17111682,31.42224013,52.55938287,82.94259943,118.5065111,144.0405965,137.7305526,97.55146608,51.96419953,22.82004747,9.084052122,3.467582807,1.30200931,0.485827539,0.180855264,0.067266716,0.025010818,0.009298288,0.003456675,0.001285011,0.000477697],[1.8,1.79676,1.790938498,1.780512545,1.761949005,1.729240995,1.672680963,1.578074073,1.428777395,1.215465675,0.956192601,0.708277606,0.532684967,0.439149408,0.398073323,0.381722029,0.37548038,0.373136763,0.372262274,0.371936734,0.371815654,0.371770635,0.371753898,0.371747676,0.371745363,0.371744503]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>日<\/th>\n      <th>S<\/th>\n      <th>I<\/th>\n      <th>R<\/th>\n      <th>dS/dt<\/th>\n      <th>dI/dt<\/th>\n      <th>dR/dt<\/th>\n      <th>R_0<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-3251b6da5ea87ab9b273" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3251b6da5ea87ab9b273">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],[1000,998.2,994.965832,989.173636,978.8605584,960.6894416,929.2672015,876.7078186,793.7652192,675.2587081,531.2181116,393.4875591,295.936093,243.9718935,221.151846,212.0677939,208.6002111,207.2982017,206.8123742,206.6315189,206.5642522,206.5392414,206.5299431,206.5264864,206.5252014,206.5247237],[1,1.8,3.234168,5.792195979,10.3130776,18.17111682,31.42224013,52.55938287,82.94259943,118.5065111,144.0405965,137.7305526,97.55146608,51.96419953,22.82004747,9.084052122,3.467582807,1.30200931,0.485827539,0.180855264,0.067266716,0.025010818,0.009298288,0.003456675,0.001285011,0.000477697],[0,1,2.8,6.034168,11.82636398,22.13944158,40.3105584,71.73279853,124.2921814,207.2347808,325.7412919,469.7818884,607.5124409,705.063907,757.0281065,779.848154,788.9322061,792.3997889,793.7017983,794.1876258,794.3684811,794.4357478,794.4607586,794.4700569,794.4735136,794.4747986],[-1.8,-3.234168,-5.792195979,-10.3130776,-18.17111682,-31.42224013,-52.55938287,-82.94259943,-118.5065111,-144.0405965,-137.7305526,-97.55146608,-51.96419953,-22.82004747,-9.084052122,-3.467582807,-1.30200931,-0.485827539,-0.180855264,-0.067266716,-0.025010818,-0.009298288,-0.003456675,-0.001285011,-0.000477697,-0.000177581],[0.8,1.434168,2.558027979,4.520881624,7.858039219,13.25112331,21.13714274,30.38321656,35.56391168,25.53408535,-6.310043894,-40.17908648,-45.58726656,-29.14415206,-13.73599535,-5.616469315,-2.165573497,-0.81618177,-0.304972275,-0.113588548,-0.042255898,-0.01571253,-0.005841613,-0.002171664,-0.000807314,-0.000300116],[1,1.8,3.234168,5.792195979,10.3130776,18.17111682,31.42224013,52.55938287,82.94259943,118.5065111,144.0405965,137.7305526,97.55146608,51.96419953,22.82004747,9.084052122,3.467582807,1.30200931,0.485827539,0.180855264,0.067266716,0.025010818,0.009298288,0.003456675,0.001285011,0.000477697],[1.8,1.79676,1.790938498,1.780512545,1.761949005,1.729240995,1.672680963,1.578074073,1.428777395,1.215465675,0.956192601,0.708277606,0.532684967,0.439149408,0.398073323,0.381722029,0.37548038,0.373136763,0.372262274,0.371936734,0.371815654,0.371770635,0.371753898,0.371747676,0.371745363,0.371744503]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>日<\/th>\n      <th>S<\/th>\n      <th>I<\/th>\n      <th>R<\/th>\n      <th>dS/dt<\/th>\n      <th>dI/dt<\/th>\n      <th>dR/dt<\/th>\n      <th>R_0<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
 ]
 
 
 ---
-class: top, center, inverse
+class: top, center, inverse, clear
 background-image: url("./fig/1000sim.png")
 background-position: 50% 50%
 background-size: contain
 
----
-class: middle
 
+
+---
+class: 
 # 集団免疫
 
+
+
+.full-width[.content-box-red[.bold[.font160[
 例のシミュレーションによれば、結局全員が罹患することなく、約200人が感染症にかからずに流行が終息した。最後に残った200人は、800人の免疫獲得者によって、感染患者からブロックされた形となる。
 
-（未感染者の減少と既感染者が増加するため、感染者と未感染者の接触する機会が減る）**病原性が弱まるからではない。**
+- 未感染者の減少と既感染者が増加するため、感染者と未感染者の接触する機会が減る&lt;br&gt;**病原性が弱まるからではない。**
 
-これを集団免疫 (herd immunity)と呼ぶ。
+- これを集団免疫 (herd immunity)と呼ぶ。
+]]]]
 
 ---
-class: middle
+class: 
+
 # 基本再生産数を減らすには
 
+.full-width[.content-box-red[.bold[.font160[
+
 $$
-\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}
+\color{red}{\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}}
 $$
 
 - ワクチンを導入すれば、未感染者 `\((S)\)` が減る
@@ -281,16 +351,16 @@ $$
 - 積極的に検査と感染者を治療することによって、回復率 `\((\gamma)\)` を上げる
 
 - 手洗い、運動、マスク着用、3密を避けることによって、感染確率 `\((\beta)\)` が減る 
+]]]]
+
+
 
 ---
-class: left, inverse
-background-image: url("./fig/Rn.png")
-background-position: 50% 50%
-background-size: contain
+class: center, inverse, clear, middle
 
-???
 
-&lt;!-- [link to the figure](https://twitter.com/kenmomd/status/1287440381961883651?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed&amp;ref_url=notion%3A%2F%2Fwww.notion.so%2F64c017115c4c407da5696ea49cf85c3d%3Fv%3D0cc968153eea4a9b90f98cfce587333a%26p%3Dbfabd7e388984537aadbe5256d46a506) --&gt;
+# Link to these slides: &lt;br&gt; [https://wangcc.me/R0](https://wangcc.me/R0/#1)
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

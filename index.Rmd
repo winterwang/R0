@@ -19,8 +19,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+unlink("index_cache", recursive = TRUE)
 options(htmltools.dir.version = TRUE)
-options(htmltools.preserve.raw = FALSE)
+options(htmltools.preserve.raw = FALSE) # 
 ```
 
 # 感染症の感染モデル
@@ -100,7 +101,7 @@ class:
 ---
 class: 
 
-# SIR モデル (1)
+# SIR モデル (1): 集団分類 S, I, R
 
 
 .full-width[.content-box-red[.bold[.font160[
@@ -113,10 +114,13 @@ class:
 
 ]]]]
 
+???
+- この三つの集団の人数は常に、時間と共に変化していく。
+
 ---
 class: 
 
-# SIR モデル (2)
+# SIR モデル (2): パラメーターと SIR モデル
 
 
 .full-width[.content-box-red[.bold[.font150[
@@ -145,7 +149,7 @@ $$
 ---
 class: 
 
-# SIR モデル (3)
+# SIR モデル (3): 感染者数変化式の変形
 
 .font150[.bold[
 - 感染が始まったばかりの時は（初期状態）<br> $S(t) = S_0$ として置き換える
@@ -162,26 +166,31 @@ $$
 $$
 ]]]]
 
+???
+
+- 最後の矢印の式は、時間微分式が微分される前の式に戻る状態の数式
+
 ---
 class: 
 
 # 基本再生産数 $\mathfrak{R}_0$
 
-.font160[
+.font160[.bold[
 $$
 I(t) = I_0 e^{(\beta S_0 - \gamma)t} =  I_0 e^{(\color{red}{\frac{\beta S_0}{\gamma}} - 1)\gamma t}
 $$
-]
+]]
 
-
+--
 .full-width[.content-box-red[.bold[.font150[
 $$
 \color{red}{\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}}
 $$
-$\mathfrak{R}_0$ は**基本再生産数**と呼ぶ。 $\mathfrak{R}_0$ は1人の感染者が何人の未感染者に感染させる期待値
+- $\mathfrak{R}_0$ は**基本再生産数**と呼ぶ。 
+- $\mathfrak{R}_0$ は1人の感染者が何人の未感染者に感染させる期待値
 ]]]]
 
-
+--
 .font150[
 $$\mathfrak{R}_0 \left \{ \begin{array}{ll} > 1 \text{ 感染が拡大する } \\ 
 < 1 \text{ 感染が自然に終息する }  \\ \end{array} \right.$$
@@ -198,42 +207,96 @@ class:
 
 # 例: 1000人の集団に新興感染症1人が侵入
 
-.bold[.font140[
+.bold[.font100[
 - 感染確率： $\beta = 0.00015 \times 12 = 0.0018$ 
     - 一度の接触で感染する確率が $0.00015$ と仮定する
     - 1人が1日平均他人と $12$ 回接触があると仮定する
-]]
-
---
-.bold[.font140[
 - 回復率: 1日で1人が回復すると仮定する $\gamma = 1$
 ]]
 
+
 --
-.bold[.font140[
-- 1日あたりの未感染者数の変化 <br> $\frac{d S(t)}{dt}  = -\beta S(t) I(t) = 0.0018 \times 1000 \times 1 = -1.8$
+.bold[.font100[
+- 1日目の未感染者数の変化 <br> $\frac{d S(t=1)}{dt}  = -\beta S_0 I(t = 1) = 0.0018 \times 1000 \times 1 = -1.8$
 ]]
 
 --
-.bold[.font140[
-- 1日あたりの感染者数の変化 <br> $\frac{d I(t)}{dt} = \beta S(t) I(t) - \gamma I(t) = 1.8 - 1 \times 1 = 0.8$
+.bold[.font100[
+- 1日目の感染者数の変化 <br> $\frac{d I(t=1)}{dt} = \beta S_0 I(t = 1) - \gamma I(t = 1) = 1.8 - 1 \times 1 = 0.8$
 ]]
 
 --
-.bold[.font140[
-- 1日あたりの既感染者数の変化 <br> $\frac{d R(t)}{dt} = \gamma I(t) = 1$
+.bold[.font100[
+- 1日目の既感染者数の変化 <br> $\frac{d R(t = 1)}{dt} = \gamma I(t = 1) = 1$
 ]]
+
+--
+.font100[
+$$
+\begin{aligned}
+\mathfrak{R}_0 = {\frac{\beta S(t = 1)}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8 & \;
+\text{(Day 1)}
+\end{aligned}
+$$
+]
+
 
 ---
 class: 
 
-# 例: シミュレーション計算
+# 例: シミュレーション計算 (1)
 
-.font150[
+
+.bold[.font100[
+- 2日目の未感染者数の変化
+
 $$
-\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}} = \frac{0.0018 \times 1000}{1} = 1.8
+\begin{aligned}
+  \frac{d S(t=2)}{dt} & = -\beta (S_0 - \frac{d S(t=1)}{dt}) I(t = 2) \\
+                      & = - 0.0018 \times (1000 - 1.8) \times 1.8 = -3.234 
+\end{aligned}
+$$
+]]
+
+--
+.bold[.font100[
+- 2日目の感染者数の変化 
+
+$$
+\begin{aligned}
+\frac{d I(t=2)}{dt} &= \beta S(t = 1) I(t = 2) - \gamma I(t = 2) \\ &= 0.0018\times (1000-1.8) \times 1- 1 \times 1.8 = 1.434
+\end{aligned}
+$$
+]]
+
+--
+.bold[.font100[
+- 2日目の既感染者数の変化
+
+$$
+\begin{aligned}
+\frac{d R(t=2)}{dt} & = \gamma I(t = 2) \\ & = 1 \times 1.8 = 1.8
+\end{aligned}
+$$
+]]
+
+
+--
+.font100[
+$$
+\begin{aligned}
+\mathfrak{R}_0 = {\frac{\beta S(t = 2)}{\gamma}} = \frac{0.0018 \times (1000 - 1.8)}{1} = 1.796 & \;
+\text{(Day 2)}
+\end{aligned}
 $$
 ]
+
+
+
+---
+class: 
+# 例: シミュレーション計算 (2)
+
 
 .bold[
 ```{r tab1, echo = FALSE, message=FALSE, eval=TRUE, cache=TRUE}
@@ -244,35 +307,43 @@ names(dt)[7] <- "dR/dt"
 library(DT)
 datatable(
   head(dt,26),  escape=FALSE, 
-  fillContainer = FALSE, options = list(pageLength = 6)) %>% 
+  fillContainer = FALSE, options = list(pageLength = 8)) %>% 
   formatRound(columns=2:8, digits=3)
 ```
 ]
 
 
 ---
-class: top, center, inverse
+class: top, center, inverse, clear
 background-image: url("./fig/1000sim.png")
 background-position: 50% 50%
 background-size: contain
 
----
-class: middle
 
+
+---
+class: 
 # 集団免疫
 
+
+
+.full-width[.content-box-red[.bold[.font160[
 例のシミュレーションによれば、結局全員が罹患することなく、約200人が感染症にかからずに流行が終息した。最後に残った200人は、800人の免疫獲得者によって、感染患者からブロックされた形となる。
 
-（未感染者の減少と既感染者が増加するため、感染者と未感染者の接触する機会が減る）**病原性が弱まるからではない。**
+- 未感染者の減少と既感染者が増加するため、感染者と未感染者の接触する機会が減る<br>**病原性が弱まるからではない。**
 
-これを集団免疫 (herd immunity)と呼ぶ。
+- これを集団免疫 (herd immunity)と呼ぶ。
+]]]]
 
 ---
-class: middle
+class: 
+
 # 基本再生産数を減らすには
 
+.full-width[.content-box-red[.bold[.font160[
+
 $$
-\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}
+\color{red}{\mathfrak{R}_0 = {\frac{\beta S_0}{\gamma}}}
 $$
 
 - ワクチンを導入すれば、未感染者 $(S)$ が減る
@@ -280,13 +351,13 @@ $$
 - 積極的に検査と感染者を治療することによって、回復率 $(\gamma)$ を上げる
 
 - 手洗い、運動、マスク着用、3密を避けることによって、感染確率 $(\beta)$ が減る 
+]]]]
+
+
 
 ---
-class: left, inverse
-background-image: url("./fig/Rn.png")
-background-position: 50% 50%
-background-size: contain
+class: center, inverse, clear, middle
 
-???
 
-<!-- [link to the figure](https://twitter.com/kenmomd/status/1287440381961883651?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed&ref_url=notion%3A%2F%2Fwww.notion.so%2F64c017115c4c407da5696ea49cf85c3d%3Fv%3D0cc968153eea4a9b90f98cfce587333a%26p%3Dbfabd7e388984537aadbe5256d46a506) -->
+# Link to these slides: <br> [https://wangcc.me/R0](https://wangcc.me/R0/#1)
+
