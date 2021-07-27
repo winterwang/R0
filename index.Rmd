@@ -395,6 +395,58 @@ background-size: contain
 
 # 代表的な感染症の $\mathfrak{R}_0$ 値
 
+---
+class: 
+background-image: url("./fig/12.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+
+---
+class: 
+background-image: url("./fig/13.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+background-image: url("./fig/14.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+background-image: url("./fig/15.png")
+background-position: 50% 50%
+background-size: contain
+
+# 代表的な感染症の $\mathfrak{R}_0$ 値
+
+---
+class: 
+
+# チャレンジ
+
+.bold[.font160[
+- 真の $\mathfrak{R}_0$ 値はパンデミック収束するまで誰も知らない
+]]
+
+--
+.bold[.font160[
+- ある感染症の $\mathfrak{R}_0$ は平均値であり、毎日変動し、スーパースプレッダー (super spreader) コロナの場合は無症状者の存在も感染症コントロール・感染症疫学上での大きな懸念材料となる
+]]
+
+--
+.bold[.font160[
+- 検査/報告の遅れなど人的原因も $\mathfrak{R}_0$ の値、感染症コントロールに大きな影響を与える
+]]
+
 
 
 ---
