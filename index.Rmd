@@ -50,7 +50,7 @@ background-size: contain
 
 ---
 class: top, center, clear
-background-image: aurl("./fig/herd2.png")
+background-image: url("./fig/herd2.png")
 background-position: 50% 50%
 background-size: contain
 
