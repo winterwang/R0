@@ -3,7 +3,7 @@ title: "基本再生産数"
 subtitle: "Basic reproduction number $R_0$"
 author: "王　超辰"
 institute: "公衆衛生学講座"
-date: "2021-07-27（木）基礎医学セミナー"
+date: "2021-07-29（木）基礎医学セミナー"
 output:
   xaringan::moon_reader:
     css:
